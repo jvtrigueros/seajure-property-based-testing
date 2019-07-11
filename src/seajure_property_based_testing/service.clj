@@ -4,6 +4,11 @@
             [io.pedestal.http.body-params :as body-params]
             [ring.util.response :as ring-resp]))
 
+(defn register
+  "Register a user."
+  [request]
+  (ring-resp/response {:status "OK"}))
+
 (defn about-page
   [request]
   (ring-resp/response (format "Clojure %s - served from %s"
@@ -18,10 +23,12 @@
 ;; The interceptors defined after the verb map (e.g., {:get home-page}
 ;; apply to / and its children (/about).
 (def common-interceptors [(body-params/body-params) http/html-body])
+(def api-interceptors [http/json-body])
 
 ;; Tabular routes
 (def routes #{["/" :get (conj common-interceptors `home-page)]
-              ["/about" :get (conj common-interceptors `about-page)]})
+              ["/about" :get (conj common-interceptors `about-page)]
+              ["/register" :post (conj api-interceptors `register)]})
 
 ;; Map-based routes
 ;(def routes `{"/" {:interceptors [(body-params/body-params) http/html-body]
