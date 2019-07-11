@@ -1,8 +1,8 @@
-(ns seajure-property-based-testing.service-test
+(ns seajure-pbt.service-test
   (:require [clojure.test :refer :all]
             [io.pedestal.test :refer :all]
             [io.pedestal.http :as bootstrap]
-            [seajure-property-based-testing.service :as service]))
+            [seajure-pbt.service :as service]))
 
 (def service
   (::bootstrap/service-fn (bootstrap/create-servlet service/service)))
@@ -37,3 +37,8 @@
         "X-Permitted-Cross-Domain-Policies" "none"
         "Content-Security-Policy" "object-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'strict-dynamic' https: http:;"})))
 
+(deftest register-test
+  [])
+
+(comment
+  "need a roundtrip generative test to create a user then fetch it")

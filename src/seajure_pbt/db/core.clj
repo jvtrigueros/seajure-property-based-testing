@@ -1,10 +1,21 @@
-(ns seajure-property-based-testing.db.core
+(ns seajure-pbt.db.core
   (:require [cognitect.aws.client.api :as aws]
             [buddy.core.hash :as hash]
             [buddy.core.codecs :refer [bytes->hex]])
   (:import (java.util UUID)))
 
 (def ^:dynamic *table-name* :Users)
+
+(defn create-client
+  []
+  (aws/client {:api               :dynamodb
+               :endpoint-override {:protocol :http
+                                   :hostname "localhost"
+                                   :port     8000}}))
+
+(defn destroy-client
+  [client]
+  (aws/stop client))
 
 (defn create-table
   "Create DynamoDB Table"
