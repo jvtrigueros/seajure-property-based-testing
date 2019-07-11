@@ -5,6 +5,7 @@
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [io.pedestal/pedestal.service "0.5.7"]
                  [io.pedestal/pedestal.jetty "0.5.7"]
+                 [buddy/buddy-core "1.6.0"]
                  [com.cognitect.aws/api "0.8.345"
                   :exclusions [org.eclipse.jetty/jetty-client
                                org.eclipse.jetty/jetty-http
