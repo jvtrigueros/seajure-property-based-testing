@@ -16,5 +16,6 @@
   :resource-paths ["config", "resources"]
   :profiles {:dev     {:aliases      {"run-dev" ["trampoline" "run" "-m" "seajure-property-based-testing.server/run-dev"]}
                        :dependencies [[io.pedestal/pedestal.service-tools "0.5.7"]]}
+             :test    {:dependencies [[http-kit "2.3.0"]]}
              :uberjar {:aot [seajure-property-based-testing.server]}}
   :main ^{:skip-aot true} seajure-property-based-testing.server)
